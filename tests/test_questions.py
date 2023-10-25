@@ -1,4 +1,5 @@
 import pytest
+import allure
 from pages.main_page import MainPage
 from locators.main_page_locators import MainPageLocators
 
@@ -17,6 +18,7 @@ from locators.main_page_locators import MainPageLocators
     ]
 )
 class TestQuestions:
+    @allure.title('Checking the compliance of the answer')
     def test_question(self, driver, question_locator, answer_locator, current_answer):
         main_page = MainPage(driver)
         main_page.go_to_site()

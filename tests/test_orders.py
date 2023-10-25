@@ -1,4 +1,5 @@
 import pytest
+import allure
 from pages.main_page import MainPage
 from pages.order_page import OrderPage
 
@@ -11,13 +12,11 @@ from pages.order_page import OrderPage
     ]
 )
 class TestOrders:
+    @allure.title('Checking the successful order creation')
     def test_order_scooter(self, driver, used_button, name, surname, address, station, phone, date):
         main_page = MainPage(driver)
         main_page.go_to_site()
-        if used_button == 'top':
-            main_page.click_on_top_order_button()
-        elif used_button == 'bottom':
-            main_page.click_on_bottom_order_button()
+        main_page.click_on_order_button(used_button)
 
         order_page = OrderPage(driver)
         order_page.order_scooter(name, surname, address, station, phone, date)
